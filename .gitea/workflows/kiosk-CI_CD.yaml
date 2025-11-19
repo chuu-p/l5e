@@ -1,0 +1,62 @@
+on:
+  push:
+    tags:
+      - "*"
+
+name: CI/CD for l5e 
+
+jobs:
+  check-site:
+    name: CI - l5e-cdn 
+    runs-on: nixos-native
+    if: startsWith(github.ref_name, 'cdn-')
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use the latest tag
+        run: echo "The latest tag is ${{ github.ref_name }}"
+      - name: install dependencies (vitest)
+        run: nix develop --command pnpm install --frozen-lockfile
+        working-directory: ./l5e-cdn
+      - name: run tests
+        run: nix develop --command just test
+        working-directory: ./l5e-cdn
+      # - name: linting
+      #   run: nix develop --command just lint
+      #   working-directory: ./kiosk-site
+      # - name: check formatting
+      #   run: nix develop --command just fmt
+      #   working-directory: ./kiosk-site
+      # - name: check code coverage
+      #   run: nix develop --command just coverage
+      #   working-directory: ./kiosk-site
+      # - name: scan for security vulnerabilities
+      #   run: nix develop --command just audit
+      #   working-directory: ./kiosk-site
+      # - name: scan for outdated packages
+      #   run: nix develop --command just outdated
+      #   working-directory: ./kiosk-site
+  
+  build-and-deploy-site:
+    name: Build and Deploy Cdn 
+    runs-on: nixos-native
+    if: startsWith(github.ref_name, 'cdn-')
+    needs: CI - l5e-cdn 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Docker Buildx for Insecure Registry
+        uses: docker/setup-buildx-action@v3
+        with:
+          install: true
+          buildkitd-config-inline: |
+            [registry."registry.jinora.lan"]
+            http = true
+            insecure = true # Allows self-signed certs (useful if you switch back to HTTPS)
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./l5e-cdn
+          push: true
+          tags: |
+            registry.jinora.lan/l5e-cdn:latest
+            registry.jinora.lan/l5e-cdn:${{ github.ref_name }}
