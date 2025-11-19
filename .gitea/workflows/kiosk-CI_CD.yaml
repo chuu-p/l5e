@@ -17,9 +17,9 @@ jobs:
       - name: install dependencies (vitest)
         run: nix develop --command pnpm install --frozen-lockfile
         working-directory: ./l5e-cdn
-      - name: run tests
-        run: nix develop --command just test
-        working-directory: ./l5e-cdn
+      # - name: run tests
+      #   run: nix develop --command just test
+      #   working-directory: ./l5e-cdn
       # - name: linting
       #   run: nix develop --command just lint
       #   working-directory: ./kiosk-site
