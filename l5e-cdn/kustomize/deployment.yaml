@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: l5e-cdn
-        image: registry.jinora.lan/l5e-cdn:latest
+        image: http://registry.jinora.lan/l5e-cdn:latest
         ports:
           - containerPort: 3000
         env:
