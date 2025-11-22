@@ -6,7 +6,7 @@ on:
 name: CI/CD for l5e 
 
 jobs:
-  check-site:
+  check-cdn:
     name: CI - l5e-cdn 
     runs-on: nixos-native
     if: startsWith(github.ref_name, 'cdn-')
@@ -36,7 +36,7 @@ jobs:
       #   run: nix develop --command just outdated
       #   working-directory: ./kiosk-site
   
-  build-and-deploy-site:
+  build-and-deploy-cdn:
     name: Build and Deploy Cdn 
     runs-on: nixos-native
     if: startsWith(github.ref_name, 'cdn-')
