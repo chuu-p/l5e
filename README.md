@@ -50,3 +50,5 @@ frontend:
   - youtube
   - mpv (with mpv script as plugin that sends usage data to the api)
   - etc. this needs to be extensible by power users
+- google calendar
+
