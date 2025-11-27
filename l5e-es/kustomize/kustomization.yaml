@@ -1,15 +1,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 metadata:
-  name: mongodb
-namespace: mongodb
-
+  name: l5e-es
+namespace: l5e
 resources:
-  - namespace.yaml
-  - helmrelease-operator.yaml
-  - helmrepo-operator.yaml
-  - storageclass.yaml
-  - pv.yaml
-  - pvc.yaml
-  - mongodb.yaml
-  - mongo-secret.yaml
+  - mongodb-helmrepo.yaml
+  - mongodb-operator-release.yaml
+  - mongodb-storage.yaml
+  - mongodb-secret.yaml
+  - mongodb-instance.yaml
