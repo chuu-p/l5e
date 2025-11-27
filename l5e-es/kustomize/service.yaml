@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mongodb-admin-secret
+  namespace: l5e
+type: Opaque
+stringData:
+  password: "admin-secure-password-here"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mongodb-eventstore-secret
+  namespace: l5e
+type: Opaque
+stringData:
+  password: "eventstore-secure-password-here"
