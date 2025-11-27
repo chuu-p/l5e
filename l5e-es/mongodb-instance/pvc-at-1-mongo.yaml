@@ -10,4 +10,3 @@ spec:
     requests:
       storage: 20Gi
   storageClassName: sc-at-1-mongodb
-

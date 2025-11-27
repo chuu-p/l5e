@@ -16,4 +16,3 @@ spec:
         namespace: flux-system
   # Optional: if you want to pass values to the chart you can add `values:` here.
   # The chart installs the operator into the HelmRelease namespace (mongodb).
-

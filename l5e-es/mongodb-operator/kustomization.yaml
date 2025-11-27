@@ -6,4 +6,3 @@ resources:
   - namespace.yaml
   - helmrepository-mongodb.yaml
   - helmrelease-operator.yaml
-

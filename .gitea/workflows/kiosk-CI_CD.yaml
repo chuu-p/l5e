@@ -3,11 +3,11 @@ on:
     tags:
       - "*"
 
-name: CI/CD for l5e 
+name: CI/CD for l5e
 
 jobs:
   check-cdn:
-    name: CI - l5e-cdn 
+    name: CI - l5e-cdn
     runs-on: nixos-native
     if: startsWith(github.ref_name, 'cdn-')
     steps:
@@ -35,12 +35,12 @@ jobs:
       # - name: scan for outdated packages
       #   run: nix develop --command just outdated
       #   working-directory: ./kiosk-site
-  
+
   build-and-deploy-cdn:
-    name: Build and Deploy Cdn 
+    name: Build and Deploy Cdn
     runs-on: nixos-native
     if: startsWith(github.ref_name, 'cdn-')
-    needs: CI - l5e-cdn 
+    needs: CI - l5e-cdn
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

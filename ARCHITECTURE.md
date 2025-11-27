@@ -9,7 +9,7 @@ cloud "User" as user
 rectangle "<<ingress>>\n\n**l5e-gateway**\n\napi gateway" as api_gateway
 component "<<typescript/nextjs>>\n\n**l5e-cdn**\n\nCDN" as cdn
 package "Frontend" {
-    component "<<kotlin/jetpack-compose>>\n\n**l5e-app**\n\nAndroid app" as app 
+    component "<<kotlin/jetpack-compose>>\n\n**l5e-app**\n\nAndroid app" as app
     rectangle "<<typescript/nextjs/vuejs>>\n\n**l5e-site**\n\nFrontend Website" as frontend
 }
 
@@ -28,9 +28,9 @@ package "Backend" {
     }
 }
 
-user -down-> app 
+user -down-> app
 app -down-> api_gateway
-app -down-> cdn 
+app -down-> cdn
 api_gateway -left-> cmd_service
 api_gateway -right-> query_service
 
@@ -42,11 +42,8 @@ event_handler -right-> user_db : Update Read\nDB
 query_service --> user_db : Query
 
 api_gateway -right-> frontend
-frontend -down-> cdn 
-user --> frontend 
+frontend -down-> cdn
+user --> frontend
 
 @enduml
 ```
-
-
-

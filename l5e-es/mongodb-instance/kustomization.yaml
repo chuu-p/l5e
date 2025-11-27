@@ -9,4 +9,3 @@ resources:
   - pv-at-1-mongo.yaml
   - pvc-at-1-mongo.yaml
   - mongodb-l5e-es.yaml
-

@@ -7,7 +7,6 @@ spec:
   members: 1
   type: ReplicaSet
   version: "6.0.8"           # adjust the MongoDB version if you want
-  persistent: true
   statefulSet:
     spec:
       template:
