@@ -3,10 +3,12 @@ kind: MongoDBCommunity
 metadata:
   name: l5e-es
   namespace: l5e
+  annotations:
+    flux.weave.works/depends-on: l5e/mongodb-operator
 spec:
   members: 1
   type: ReplicaSet
-  version: "7.0. 0"
+  version: "7.0.0"
   security:
     tls:
       enabled: false
@@ -35,8 +37,6 @@ spec:
   additionalMongodConfig:
     net:
       maxIncomingConnections: 200
-      unixDomainSocket:
-        enabled: true
     security:
       authorization: enabled
   statefulSet:
