@@ -4,7 +4,8 @@ metadata:
   name: mongodb-operator
   namespace: l5e
 spec:
-  interval: 5m
+  interval: 10m
+  timeout: 10m
   chart:
     spec:
       chart: community-operator
@@ -12,24 +13,17 @@ spec:
         kind: HelmRepository
         name: mongodb-community
         namespace: l5e
-      interval: 1h
+      version: "0.9.0"
   install:
     crds: Create
     remediation:
-      retries: 3
+      retries: 5
+      remediateLastFailure: true
   upgrade:
     crds: Create
     remediation:
-      retries: 3
-  postRenderers:
-    - kustomize:
-        patchesStrategicMerge:
-          - apiVersion: apiextensions.k8s.io/v1
-            kind: CustomResourceDefinition
-            metadata:
-              name: mongodbcommunity.mongodbcommunity.mongodb.com
-            spec:
-              preserveUnknownFields: false
+      retries: 5
+      remediateLastFailure: true
   values:
     operator:
       watchNamespace: l5e
