@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pvc-mongodb-data
+  name: pvc-at-1-mongo
   namespace: l5e
 spec:
   accessModes:
@@ -9,4 +9,5 @@ spec:
   resources:
     requests:
       storage: 20Gi
-  storageClassName: sc-mongodb
+  storageClassName: sc-at-1-mongodb
+

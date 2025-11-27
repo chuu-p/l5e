@@ -1,15 +1,16 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-mongodb-data
+  name: pv-at-1-mongo
 spec:
   capacity:
     storage: 20Gi
   accessModes:
     - ReadWriteOnce
-  storageClassName: sc-mongodb
+  storageClassName: sc-at-1-mongodb
   local:
-    path: /run/media/at-1/mongodb-data
+    path: /run/media/at-1/mongo
+  persistentVolumeReclaimPolicy: Retain
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -18,3 +19,4 @@ spec:
           operator: In
           values:
             - toph
+

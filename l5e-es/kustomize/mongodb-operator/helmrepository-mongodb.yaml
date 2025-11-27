@@ -1,9 +1,9 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: mongodb-community
-  namespace: l5e
+  name: mongodb-charts
+  namespace: flux-system
 spec:
-  interval: 5m
+  interval: 1h
   url: https://mongodb.github.io/helm-charts
-  timeout: 3m
+

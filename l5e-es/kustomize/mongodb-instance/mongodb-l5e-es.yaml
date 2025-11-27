@@ -1,0 +1,62 @@
+apiVersion: mongodbcommunity.mongodb.com/v1
+kind: MongoDBCommunity
+metadata:
+  name: l5e-es
+  namespace: l5e
+spec:
+  members: 1
+  type: ReplicaSet
+  version: "6.0.8"           # adjust the MongoDB version if you want
+  persistent: true
+  statefulSet:
+    spec:
+      template:
+        spec:
+          # you can add nodeSelector/affinity here similar to your other workloads
+          # affinity: ...
+          containers:
+            - name: mongod
+              resources:
+                requests:
+                  cpu: 250m
+                  memory: 512Mi
+                limits:
+                  cpu: 1000m
+                  memory: 1Gi
+  users:
+    - name: l5e-user
+      db: admin
+      passwordSecretRef:
+        name: l5e-user-password
+      roles:
+        - name: readWrite
+          db: l5e-db
+      scramCredentialsSecretName: l5e-user-scram
+  # This example uses the operator's persistent volume templates for the members
+  # The operator will create PVCs from this template
+  persistent: true
+  additionalMongodConfig:
+    storage.wiredTiger.engineConfig.journalCompressor: zlib
+  # volumeClaimTemplate goes under the spec for StatefulSet-style storage
+  # Many operator versions accept `volumeClaimTemplates` as shown below:
+  volumeClaimTemplates:
+    - metadata:
+        name: mongo-pvc
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: sc-at-1-mongodb
+        resources:
+          requests:
+            storage: 20Gi
+---
+# Secret referenced by the MongoDB resource (password for the user). The operator will
+# use this to initialize the SCRAM user.
+apiVersion: v1
+kind: Secret
+metadata:
+  name: l5e-user-password
+  namespace: l5e
+type: Opaque
+stringData:
+  password: "REPLACE_WITH_PASSWORD"
+
