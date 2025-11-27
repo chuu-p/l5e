@@ -15,7 +15,4 @@ spec:
         namespace: flux-system
   install:
     createNamespace: false
-  upgrade:
-    remediation:
-      retry: true
 
