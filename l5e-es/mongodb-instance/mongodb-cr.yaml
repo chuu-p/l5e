@@ -15,6 +15,7 @@ spec:
       db: admin
       passwordSecretRef:
         name: l5e-es-admin-credentials
+      scramSecretName: l5e-es-admin-scram  # <--- ADD THIS LINE
       roles:
         - name: dbAdminAnyDatabase
           db: admin
