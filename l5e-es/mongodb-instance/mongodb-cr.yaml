@@ -32,4 +32,4 @@ spec:
               requests:
                 storage: 10Gi
             storageClassName: sc-at-1-l5e-es
-            accessModes: [ "ReadWriteOnce" ]
+            accessModes: ["ReadWriteOnce"]

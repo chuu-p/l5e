@@ -13,8 +13,8 @@ spec:
   nodeAffinity:
     required:
       nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - toph
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - toph
