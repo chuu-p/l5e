@@ -7,3 +7,4 @@ resources:
   - pv.yaml
   - secret.yaml
   - helm-release.yaml   # <--- ADD THIS
+  - bitnami-helm-repository.yaml
