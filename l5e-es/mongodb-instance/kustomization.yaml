@@ -6,5 +6,4 @@ resources:
   - storageclass.yaml
   - pv.yaml
   - secret.yaml
-  - mongodb-cr.yaml
-  - ingress.yaml
+  - helm-release.yaml   # <--- ADD THIS
