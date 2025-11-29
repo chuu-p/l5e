@@ -29,3 +29,7 @@ spec:
 
     volumePermissions:
       enabled: true
+        image:
+          registry: docker.io
+          repository: bitnami/os-shell
+          tag: sha256-35a62a3f73b69aa3589efec996eb70f5e4f719488112f0736ca65df6191c49be
