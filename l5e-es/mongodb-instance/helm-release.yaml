@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: mongodb
-      version: "16.5.45"
+      version: "16.X.X"
       sourceRef:
         kind: HelmRepository
         name: bitnami
