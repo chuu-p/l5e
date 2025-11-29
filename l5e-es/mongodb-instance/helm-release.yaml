@@ -12,7 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: bitnami
-        namespace: l5e 
+        namespace: flux-system 
   values:
     architecture: standalone
 
