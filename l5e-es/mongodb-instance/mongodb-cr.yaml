@@ -1,0 +1,21 @@
+apiVersion: mongodbcommunity.mongodb.com/v1
+kind: MongoDBCommunity
+metadata:
+  name: l5e-es
+  namespace: l5e
+spec:
+  members: 1
+  type: ReplicaSet
+  version: "5.0.8"   # or latest 5.x
+  # Define storage for the replica set via a StatefulSet template:
+  statefulSet:
+    spec:
+      volumeClaimTemplates:
+      - metadata:
+          name: data-volume
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+          storageClassName: sc-l5e-es
