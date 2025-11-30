@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+metadata:
+  name: nats-instance
+  namespace: l5e
+resources:
+  - storageclass.yaml
+  - pv.yaml
+  - helmrelease.yaml
+  - ingress.yaml

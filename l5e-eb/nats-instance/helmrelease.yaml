@@ -1,0 +1,52 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: l5e-eb
+  namespace: l5e
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: nats
+      version: "1.x.x" # Automatically pick the latest stable 1.x
+      sourceRef:
+        kind: HelmRepository
+        name: nats-helm
+        namespace: flux-system
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
+  values:
+    fullnameOverride: l5e-eb
+    
+    # NATS Configuration
+    config:
+      cluster:
+        enabled: false # set to true if you scale up later
+      jetstream:
+        enabled: true
+        domain: l5e 
+        memoryStore:
+          max_size: 1G
+        fileStore:
+          pvc:
+            enabled: true
+            size: 10Gi
+            storageClassName: sc-l5e-eb
+          
+    # StatefulSet Configuration
+    container:
+      image:
+        repository: nats
+        tag: 2.10-alpine # Explicit versioning is recommended
+        
+    statefulSet:
+      replicas: 1 # Must correspond to available PVs
+      
+    # Service Configuration
+    service:
+      name: l5e-eb
+      ports:
+        nats: 4222
+        dashboard: 8222 # NATS Monitoring dashboard
