@@ -8,6 +8,8 @@ spec:
 
   type: ReplicaSet
 
+  version: "7.0.5"   # <-- REQUIRED (or any supported version)
+
   security:
     authentication:
       modes: ["SCRAM"] # <- required
