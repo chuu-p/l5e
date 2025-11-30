@@ -7,13 +7,13 @@ metadata:
     kubernetes.io/ingress.class: "traefik"
 spec:
   rules:
-  - host: "es.jinora.lan"
-    http:                  # for MongoDB, this actually needs TCP routing config in Traefik
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: l5e-es
-            port:
-              number: 27017
+    - host: "es.jinora.lan"
+      http: # for MongoDB, this actually needs TCP routing config in Traefik
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: l5e-es
+                port:
+                  number: 27017

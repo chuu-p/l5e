@@ -6,7 +6,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: l5e-es-svc     # operator labels pods "app: <name>-svc"
+    app: l5e-es-svc # operator labels pods "app: <name>-svc"
   ports:
     - port: 27017
       targetPort: 27017

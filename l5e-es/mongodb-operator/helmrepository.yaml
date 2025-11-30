@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
   name: mongodb-helm
-  namespace: flux-system       # namespace where Flux sources are installed
+  namespace: flux-system # namespace where Flux sources are installed
 spec:
   interval: 1h
   url: https://mongodb.github.io/helm-charts

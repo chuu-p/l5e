@@ -14,28 +14,27 @@ spec:
         app: l5e-cdn
     spec:
       containers:
-      - name: l5e-cdn
-        image: registry.jinora.lan/l5e-cdn:latest
-        ports:
-          - containerPort: 3000
-        env:
-          - name: STATIC_ROOT
-            value: "/data"
-        volumeMounts:
-          - mountPath: /data
-            name: cdn-data
-        readinessProbe:
-          httpGet:
-            path: /health_check 
-            port: 3000
-          initialDelaySeconds: 5
-        livenessProbe:
-          httpGet:
-            path: /health_check
-            port: 3000
-          initialDelaySeconds: 15
+        - name: l5e-cdn
+          image: registry.jinora.lan/l5e-cdn:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: STATIC_ROOT
+              value: "/data"
+          volumeMounts:
+            - mountPath: /data
+              name: cdn-data
+          readinessProbe:
+            httpGet:
+              path: /health_check
+              port: 3000
+            initialDelaySeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health_check
+              port: 3000
+            initialDelaySeconds: 15
       volumes:
         - name: cdn-data
           persistentVolumeClaim:
-            claimName: pvc-at-1-cdn 
-
+            claimName: pvc-at-1-cdn

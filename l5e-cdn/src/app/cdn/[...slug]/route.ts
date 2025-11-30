@@ -4,7 +4,7 @@ import path from "path";
 
 export async function GET(
   request: NextRequest,
-  paramsPromise: { params: Promise<{ slug?: string[] }> }
+  paramsPromise: { params: Promise<{ slug?: string[] }> },
 ) {
   const { slug } = await paramsPromise.params;
 
@@ -48,8 +48,8 @@ export async function GET(
         ext === ".txt"
           ? "text/plain"
           : ext === ".json"
-          ? "application/json"
-          : "application/octet-stream";
+            ? "application/json"
+            : "application/octet-stream";
 
       console.log("Serving file with MIME:", mime);
 
@@ -65,4 +65,3 @@ export async function GET(
     return new NextResponse("Not found", { status: 404 });
   }
 }
-

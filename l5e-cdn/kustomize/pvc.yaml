@@ -9,5 +9,4 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  storageClassName: sc-at-1-cdn 
-
+  storageClassName: sc-at-1-cdn
