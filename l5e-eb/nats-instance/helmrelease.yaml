@@ -48,5 +48,9 @@ spec:
     service:
       name: l5e-eb
       ports:
-        nats: 4222
-        dashboard: 8222 # NATS Monitoring dashboard
+        nats: 
+          port: 4222
+          enabled: true
+        dashboard: 
+          port: 8222 # NATS Monitoring dashboard
+          enabled: true;
