@@ -9,3 +9,4 @@ resources:
   - service.yaml
   - ingress.yaml
   - mongodb-cr.yaml # MongoDBCommunity custom resource
+  - l5e-es-admin-password.yaml
