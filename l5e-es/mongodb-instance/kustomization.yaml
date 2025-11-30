@@ -4,7 +4,6 @@ metadata:
   name: mongodb-instance
   namespace: l5e
 resources:
-  - namespace.yaml        # if you need to ensure namespace l5e exists
   - storageclass.yaml
   - pv.yaml
   - service.yaml
