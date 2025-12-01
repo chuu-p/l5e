@@ -11,3 +11,4 @@ resources:
   - storageclass.yaml
   - pv.yaml
   - pvc.yaml
+  - servicemonitor.yaml
