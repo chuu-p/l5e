@@ -4,7 +4,7 @@ metadata:
   name: l5e-cdn
   namespace: l5e
   labels:
-    release: prometheus
+    release: kube-prometheus-stack   # ← FIXED
 spec:
   selector:
     matchLabels:
@@ -14,6 +14,5 @@ spec:
       - l5e
   endpoints:
     - port: http
-      targetPort: 3000
       interval: 15s
       path: /metrics
