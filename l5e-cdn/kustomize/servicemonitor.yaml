@@ -1,18 +1,20 @@
+
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: l5e-cdn
   namespace: l5e
   labels:
-    release: kube-prometheus-stack   # ← FIXED
+    release: kube-prometheus-stack
 spec:
-  selector:
-    matchLabels:
-      app: l5e-cdn
   namespaceSelector:
     matchNames:
       - l5e
+  selector:
+    matchLabels:
+      app: l5e-cdn
   endpoints:
     - port: http
-      interval: 15s
+      targetPort: 3000
       path: /metrics
+      scheme: http
