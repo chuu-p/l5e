@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: l5e-cdn
+  namespace: l5e
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: l5e-cdn
+  namespaceSelector:
+    matchNames:
+      - l5e
+  endpoints:
+    - port: http
+      targetPort: 3000
+      interval: 15s
+      path: /metrics
