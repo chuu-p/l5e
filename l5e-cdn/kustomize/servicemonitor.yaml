@@ -1,4 +1,3 @@
-
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
@@ -14,7 +13,6 @@ spec:
     matchLabels:
       app: l5e-cdn
   endpoints:
-    - port: http
-      targetPort: 3000
+    - targetPort: 3000
       path: /metrics
       scheme: http
