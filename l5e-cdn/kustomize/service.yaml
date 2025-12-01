@@ -3,6 +3,9 @@ kind: Service
 metadata:
   name: cdn
   namespace: l5e
+  labels:
+    app: l5e-cdn
+    release: kube-prometheus-stack
 spec:
   type: ClusterIP
   selector:
