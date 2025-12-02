@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prometheus-nats-exporter
+  namespace: l5e
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: prometheus-nats-exporter
+      version: "0.x.x"
+      sourceRef:
+        kind: HelmRepository
+        name: nats-helm
+        namespace: flux-system
+
+  values:
+    fullnameOverride: l5e-nats-exporter
+
+    nats:
+      # Point exporter to your NATS monitoring endpoint
+      url: "http://l5e-eb:8222"
+
+    service:
+      type: ClusterIP
+      port: 7777
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "7777"
+
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 50m
+        memory: 64Mi
+

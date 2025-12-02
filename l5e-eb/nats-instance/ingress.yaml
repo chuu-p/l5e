@@ -14,6 +14,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: l5e-eb
+                name: l5e-eb-headless
                 port:
                   number: 8222 # Routing to the HTTP Monitoring dashboard

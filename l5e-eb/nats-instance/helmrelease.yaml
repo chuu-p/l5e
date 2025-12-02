@@ -53,4 +53,4 @@ spec:
           enabled: true
         dashboard: 
           port: 8222 # NATS Monitoring dashboard
-          enabled: true;
+          enabled: true
