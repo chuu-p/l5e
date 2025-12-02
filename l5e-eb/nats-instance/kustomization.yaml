@@ -8,4 +8,3 @@ resources:
   - pv.yaml
   - helmrelease.yaml
   - ingress.yaml
-  - prometheus-nats-exporter-helmrelease.yaml
