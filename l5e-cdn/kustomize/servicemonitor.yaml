@@ -14,5 +14,5 @@ spec:
       app: l5e-cdn
   endpoints:
     - targetPort: 3000
-      path: /metrics
+      path: /api/metrics
       scheme: http
