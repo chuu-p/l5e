@@ -26,12 +26,12 @@ spec:
               name: cdn-data
           readinessProbe:
             httpGet:
-              path: /health_check
+              path: /api/health_check
               port: 3000
             initialDelaySeconds: 5
           livenessProbe:
             httpGet:
-              path: /health_check
+              path: /api/health_check
               port: 3000
             initialDelaySeconds: 15
       volumes:
