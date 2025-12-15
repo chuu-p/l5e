@@ -19,7 +19,33 @@
         "bearerFormat": "JWT"
       }
     },
-    "schemas": {},
+    "schemas": {
+      "CreateEntryRequest": {
+        "type": "object",
+        "properties": {
+          "eventType": {
+            "type": "string",
+            "nullable": false
+          },
+          "occurredAt": {
+            "type": "string",
+            "nullable": false
+          },
+          "data": {
+            "type": "object",
+            "nullable": false
+          }
+        }
+      },
+      "CreateEntryResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "responses": {
       "400": {
         "description": "Bad Request",
@@ -154,6 +180,45 @@
         ],
         "parameters": [],
         "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/entries": {
+      "post": {
+        "operationId": "post-entries",
+        "summary": "Create a new life data entry ",
+        "description": "Fetches detailed user information by ID",
+        "tags": [
+          "Entries"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEntryRequest"
+              }
+            }
+          },
+          "description": "CreateEntryRequest with eventType, occurredAt and data: json payload"
+        },
+        "responses": {
+          "201": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateEntryResponse"
+                }
+              }
+            }
+          },
           "400": {
             "$ref": "#/components/responses/400"
           },
