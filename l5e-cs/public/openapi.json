@@ -44,7 +44,17 @@
             "type": "string"
           }
         }
-      }
+      },
+      "GetEntryResponse": {
+        "type": "object",
+        "properties": {
+          "event": {
+            "type": "array",
+            "items": {}
+          }
+        }
+      },
+      "CreateEntryEvent": {}
     },
     "responses": {
       "400": {
@@ -192,7 +202,7 @@
     "/entries": {
       "post": {
         "operationId": "post-entries",
-        "summary": "Create a new life data entry ",
+        "summary": "Create a new life data entry",
         "description": "Fetches detailed user information by ID",
         "tags": [
           "Entries"
@@ -226,18 +236,26 @@
             "$ref": "#/components/responses/500"
           }
         }
-      }
-    },
-    "/health_check": {
+      },
       "get": {
-        "operationId": "get-health_check",
-        "summary": "",
-        "description": "",
+        "operationId": "get-entries",
+        "summary": "Fetches all life data entries",
+        "description": "Fetches all life data entries",
         "tags": [
-          "Health_check"
+          "Entries"
         ],
         "parameters": [],
         "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetEntryResponse"
+                }
+              }
+            }
+          },
           "400": {
             "$ref": "#/components/responses/400"
           },
@@ -247,13 +265,13 @@
         }
       }
     },
-    "/hello": {
+    "/health_check": {
       "get": {
-        "operationId": "get-hello",
+        "operationId": "get-health_check",
         "summary": "",
         "description": "",
         "tags": [
-          "Hello"
+          "Health_check"
         ],
         "parameters": [],
         "responses": {
