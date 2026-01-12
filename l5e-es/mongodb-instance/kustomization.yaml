@@ -4,6 +4,9 @@ metadata:
   name: mongodb-instance
   namespace: l5e
 resources:
+  - storageclass.yaml
+  - pv-l5e-es-data.yaml
+  - pv-l5e-es-logs.yaml
   - service.yaml
-  - mongodb-cr.yaml # MongoDBCommunity custom resource
+  - mongodb-cr.yaml
   - l5e-es-admin-password.yaml
