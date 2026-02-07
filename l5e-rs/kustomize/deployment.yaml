@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: l5e-rs
+  namespace: l5e
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: l5e-rs
+  template:
+    metadata:
+      labels:
+        app: l5e-rs
+    spec:
+      containers:
+        - name: pocketbase
+          image: ghcr.io/your-org/l5e-rs:0.36.2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: pb-data
+              mountPath: /pb/pb_data
+          args:
+            - serve
+            - --http=0.0.0.0:8080
+      volumes:
+        - name: pb-data
+          persistentVolumeClaim:
+            claimName: pvc-at-1-l5e-rs
+

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: l5e-rs
+  namespace: l5e
+spec:
+  selector:
+    app: l5e-rs
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+  type: ClusterIP
+
