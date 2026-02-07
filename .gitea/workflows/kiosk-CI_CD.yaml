@@ -124,9 +124,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Use the latest tag
         run: echo "The latest tag is ${{ github.ref_name }}"
-      - name: install dependencies (vitest)
-        run: nix develop --command pnpm install --frozen-lockfile
-        working-directory: ./l5e-rs
+      # - name: install dependencies (vitest)
+      #   run: nix develop --command pnpm install --frozen-lockfile
+      #   working-directory: ./l5e-rs
       # - name: run tests
       #   run: nix develop --command just test
       #   working-directory: ./l5e-rs
@@ -150,7 +150,7 @@ jobs:
     name: Build and Deploy Read Store (Pocketbase) 
     runs-on: nixos-native
     if: startsWith(github.ref_name, 'rs-')
-    needs: CI - l5e-rs
+    needs: check-rs 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
