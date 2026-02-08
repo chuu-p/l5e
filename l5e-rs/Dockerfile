@@ -5,6 +5,7 @@ ARG PB_VERSION=0.36.2
 RUN apt-get update && apt-get install -y \
     unzip \
     ca-certificates \
+    sendmail \
   && rm -rf /var/lib/apt/lists/*
 
 # download and unzip PocketBase
