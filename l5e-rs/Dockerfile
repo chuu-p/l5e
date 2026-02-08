@@ -2,9 +2,10 @@ FROM debian:bookworm-slim
 
 ARG PB_VERSION=0.36.2
 
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y \
     unzip \
-    ca-certificates
+    ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
 
 # download and unzip PocketBase
 ADD https://github.com/pocketbase/pocketbase/releases/download/v${PB_VERSION}/pocketbase_${PB_VERSION}_linux_amd64.zip /tmp/pb.zip
