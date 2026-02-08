@@ -22,9 +22,9 @@ spec:
           volumeMounts:
             - name: pb-data
               mountPath: /pb/pb_data
-          args:
-            - serve
-            - --http=0.0.0.0:8080
+          # args:
+          #   - serve
+          #   - --http=0.0.0.0:8080
       volumes:
         - name: pb-data
           persistentVolumeClaim:
