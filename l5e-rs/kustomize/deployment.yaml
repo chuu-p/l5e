@@ -16,7 +16,7 @@ spec:
       containers:
         - name: pocketbase
           image: registry.jinora.lan/l5e-rs:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always 
           ports:
             - containerPort: 8080
           volumeMounts:
