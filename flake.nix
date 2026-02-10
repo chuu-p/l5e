@@ -71,7 +71,18 @@
 
           # android
           jdk # Changed jdk25 to jdk (usually 21 LTS) for better compatibility, change back if strictly needed
-          glibc
+          libx11
+          libpulseaudio
+          libpng
+          nss
+          nspr
+          expat
+          libdrm
+          libxcb
+          libxi
+          libxkbfile
+          libxext
+          libbsd
         ];
       in {
         default = pkgs.mkShell {
