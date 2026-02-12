@@ -15,7 +15,7 @@ pub fn init<R: Runtime, C: DeserializeOwned>(
   api: PluginApi<R, C>,
 ) -> crate::Result<L5eCollector<R>> {
   #[cfg(target_os = "android")]
-  let handle = api.register_android_plugin("dev.chuu.l5e.collector", "ExamplePlugin")?;
+  let handle = api.register_android_plugin("dev.chuu.l5e.collector", "L5eCollectorPlugin")?;
   #[cfg(target_os = "ios")]
   let handle = api.register_ios_plugin(init_plugin_l5e_collector)?;
   Ok(L5eCollector(handle))

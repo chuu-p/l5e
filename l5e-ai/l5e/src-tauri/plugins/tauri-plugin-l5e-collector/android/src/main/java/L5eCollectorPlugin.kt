@@ -14,15 +14,14 @@ class PingArgs {
 }
 
 @TauriPlugin
-class ExamplePlugin(private val activity: Activity): Plugin(activity) {
-    private val implementation = Example()
+class L5eCollectorPlugin(private val activity: Activity): Plugin(activity) {
 
     @Command
     fun ping(invoke: Invoke) {
         val args = invoke.parseArgs(PingArgs::class.java)
 
         val ret = JSObject()
-        ret.put("value", implementation.pong(args.value ?: "default value :("))
+        ret.put("value", "Hello, " + args.value + " from Kotlin!")
         invoke.resolve(ret)
     }
 }

@@ -1,22 +1,26 @@
 import { invoke } from "@tauri-apps/api/core";
 
-let greetInputEl: HTMLInputElement | null;
-let greetMsgEl: HTMLElement | null;
+let pingInputEl: HTMLInputElement | null;
+let pingMsgEl: HTMLElement | null;
 
-async function greet() {
-  if (greetMsgEl && greetInputEl) {
+async function ping() {
+  if (pingMsgEl && pingInputEl) {
     // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    greetMsgEl.textContent = await invoke("plugin:l5e-collector|greet", {
-      name: greetInputEl.value,
+    const call = await invoke("plugin:l5e-collector|ping", {
+     payload: { 
+      value: pingInputEl.value,
+     }  
     });
+    console.log(JSON.stringify(call))
+    pingMsgEl.textContent = JSON.stringify(call);  
   }
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  greetInputEl = document.querySelector("#greet-input");
-  greetMsgEl = document.querySelector("#greet-msg");
-  document.querySelector("#greet-form")?.addEventListener("submit", (e) => {
+  pingInputEl = document.querySelector("#ping-input");
+  pingMsgEl = document.querySelector("#ping-msg");
+  document.querySelector("#ping-form")?.addEventListener("submit", (e) => {
     e.preventDefault();
-    greet();
+    ping();
   });
 });
