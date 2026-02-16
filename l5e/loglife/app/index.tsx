@@ -1,5 +1,6 @@
 import { Text, View } from "react-native";
 import SampleExample from "./sample";
+import BaseExample from "./base";
 
 export default function Index() {
   return (
@@ -15,6 +16,7 @@ export default function Index() {
         Edit app/index.tsx to edit this screen.
       </Text>
       <SampleExample />
+      <BaseExample />
     </View>
   );
 }

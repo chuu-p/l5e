@@ -1,4 +1,4 @@
-package com.anonymous.loglife
+package dev.chuu.loglife
 
 import android.app.Application
 import android.content.res.Configuration

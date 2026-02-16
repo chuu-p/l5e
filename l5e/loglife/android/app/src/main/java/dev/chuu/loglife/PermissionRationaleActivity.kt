@@ -1,4 +1,4 @@
-package com.anonymous.loglife
+package dev.chuu.loglife
 
 import android.os.Bundle
 import android.webkit.WebResourceRequest

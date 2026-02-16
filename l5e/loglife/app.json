@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.loglife"
+      "bundleIdentifier": "dev.chuu.loglife"
     },
     "android": {
       "adaptiveIcon": {
@@ -21,7 +21,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.loglife",
+      "package": "dev.chuu.loglife",
       "permissions": [
         "android.permission.health.READ_STEPS",
         "android.permission.health.WRITE_STEPS",

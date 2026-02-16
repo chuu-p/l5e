@@ -1,4 +1,4 @@
-package com.anonymous.loglife
+package dev.chuu.loglife
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build
