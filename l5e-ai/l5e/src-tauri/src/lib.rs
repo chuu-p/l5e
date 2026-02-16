@@ -1,5 +1,7 @@
 #[tauri::command]
-pub fn request_abc_permission(app_handle: tauri::AppHandle) -> bool {
+fn test_request_abc_permission(
+        app_handle: tauri::AppHandle
+    ) -> bool {
     use tauri::plugin::PermissionState;
     use tauri_plugin_l5e_collector::models::PermissionType;
     use tauri_plugin_l5e_collector::L5eCollectorExt;
@@ -13,7 +15,7 @@ pub fn request_abc_permission(app_handle: tauri::AppHandle) -> bool {
             .l5e_collector()
             .request_permissions(Some(vec![PermissionType::Abc]))
             .unwrap()
-        .abc
+            .abc
             == PermissionState::Granted;
     }
     true
@@ -30,7 +32,7 @@ pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_l5e_collector::init())
-        .invoke_handler(tauri::generate_handler![ping, request_abc_permission])
+        .invoke_handler(tauri::generate_handler![ping, test_request_abc_permission])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

@@ -53,7 +53,6 @@
           nodejs
           pnpm
           deno
-          bun # Fixed typo: bunbun -> bun
           tailwindcss
           mongodb-ce
           mongosh

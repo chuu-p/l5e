@@ -1,0 +1,3 @@
+
+architecture pattern:
+- event sourcing
