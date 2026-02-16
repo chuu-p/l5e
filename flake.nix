@@ -24,7 +24,7 @@
   in {
     devShells = forAllSystems (
       system: let
-        overlays = [ (import rust-overlay) ];
+        overlays = [(import rust-overlay)];
         pkgs = import nixpkgs {
           inherit system overlays;
           config = {
@@ -34,7 +34,7 @@
 
         # 2. Define the Rust toolchain with Android targets enabled
         rustToolchain = pkgs.rust-bin.stable.latest.default.override {
-          extensions = [ "rust-src" "rust-analyzer" ];
+          extensions = ["rust-src" "rust-analyzer"];
           targets = [
             "aarch64-linux-android"
             "armv7-linux-androideabi"
@@ -88,20 +88,30 @@
           buildInputs = libs;
 
           # 3. Ensure pkg-config finds libraries
-          nativeBuildInputs = with pkgs; [ pkg-config ]; 
-          
+          nativeBuildInputs = with pkgs; [pkg-config];
+
           # 4. Setup environment variables for Tauri/Rust
           LD_LIBRARY_PATH = "${pkgs.lib.makeLibraryPath libs}";
-          
+
           # Setup JAVA_HOME for Android builds
           JAVA_HOME = pkgs.jdk.home;
-          
+
           # Helpful message to verify Rust location
           shellHook = ''
             echo "Environment loaded."
             echo "Rust location: $(which cargo)"
             echo "Java location: $JAVA_HOME"
           '';
+
+          ANDROID_HOME = "/home/chuu/Android/Sdk";
+
+          # Extend PATH inside the dev shell
+          PATH =
+            pkgs.lib.makeBinPath [
+              "$ANDROID_HOME/emulator"
+              "$ANDROID_HOME/platform-tools"
+            ]
+            + ":$PATH";
         };
       }
     );
