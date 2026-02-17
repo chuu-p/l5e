@@ -1,4 +1,6 @@
 nodeLinker: hoisted
 
 onlyBuiltDependencies:
+  - esbuild
+  - msw
   - unrs-resolver
