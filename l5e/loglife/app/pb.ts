@@ -13,4 +13,3 @@ const pb = new PocketBase(PB_URL);
 pb.autoCancellation(false); // avoids cancelled requests on re-render
 
 export default pb;
-

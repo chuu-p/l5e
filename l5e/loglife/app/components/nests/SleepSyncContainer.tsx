@@ -19,7 +19,7 @@ export default function SleepSyncContainer() {
   }
 
   return (
-    <SleepSyncContainer 
+    <SleepSyncContainer
       score={82}
       title="Sleep"
       subtitle="7h 42m • Last night"
@@ -28,4 +28,3 @@ export default function SleepSyncContainer() {
     />
   );
 }
-

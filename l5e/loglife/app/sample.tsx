@@ -1,4 +1,3 @@
-
 import { Text, View, Button } from "react-native";
 import { useState } from "react";
 import {
@@ -26,7 +25,7 @@ export default function SampleExample() {
         },
       });
 
-      console.log(JSON.stringify(records, null, 2))
+      console.log(JSON.stringify(records, null, 2));
       setData(JSON.stringify(records, null, 2));
     } catch (err) {
       console.log(`Error: ${String(err)}`);
@@ -41,4 +40,3 @@ export default function SampleExample() {
     </View>
   );
 }
-

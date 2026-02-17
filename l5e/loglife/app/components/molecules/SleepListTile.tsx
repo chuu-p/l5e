@@ -24,13 +24,8 @@ export function SleepListTile({
 
       {/* Middle */}
       <View className="flex-1 gap-1">
-        <Text className="text-base font-semibold text-white">
-          {title}
-        </Text>
-        <Text className="text-sm text-neutral-400">
-          {subtitle}
-        </Text>
-
+        <Text className="text-base font-semibold text-white">{title}</Text>
+        <Text className="text-sm text-neutral-400">{subtitle}</Text>
       </View>
 
       {/* Right */}
@@ -38,4 +33,3 @@ export function SleepListTile({
     </View>
   );
 }
-

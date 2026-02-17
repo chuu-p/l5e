@@ -1,7 +1,7 @@
 import pb from "./pb";
 import { View, Button } from "react-native";
 import { useState } from "react";
-import Typography from "./components/atoms/Typography"
+import Typography from "./components/atoms/Typography";
 
 export default function BaseExample() {
   const [data, setData] = useState("Loading...");
@@ -27,5 +27,3 @@ export default function BaseExample() {
     </View>
   );
 }
-
-

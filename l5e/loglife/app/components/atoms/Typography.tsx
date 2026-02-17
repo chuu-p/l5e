@@ -6,9 +6,5 @@ interface TypographyProps {
 }
 
 export default function Typography({ text, style }: TypographyProps) {
-  return (
-    <Text style={[{ color: "white" }, style]}>
-      {text}
-    </Text>
-  );
+  return <Text style={[{ color: "white" }, style]}>{text}</Text>;
 }

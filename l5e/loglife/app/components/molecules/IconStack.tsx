@@ -6,23 +6,14 @@ type IconStackProps = {
   size?: number;
 };
 
-export function IconStack({
-  back,
-  front,
-  size = 40,
-}: IconStackProps) {
+export function IconStack({ back, front, size = 40 }: IconStackProps) {
   return (
     <View
       style={{ width: size, height: size }}
       className="items-center justify-center"
     >
-      <View className="absolute">
-        {back}
-      </View>
-      <View className="absolute">
-        {front}
-      </View>
+      <View className="absolute">{back}</View>
+      <View className="absolute">{front}</View>
     </View>
   );
 }
-

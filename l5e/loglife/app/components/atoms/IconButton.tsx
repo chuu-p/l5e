@@ -7,12 +7,8 @@ type IconButtonProps = {
 
 export function IconButton({ icon, onPress }: IconButtonProps) {
   return (
-    <Pressable
-      onPress={onPress}
-      className="p-2 rounded-full active:opacity-70"
-    >
+    <Pressable onPress={onPress} className="p-2 rounded-full active:opacity-70">
       {icon}
     </Pressable>
   );
 }
-

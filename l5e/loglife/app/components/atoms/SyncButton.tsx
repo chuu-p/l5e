@@ -20,4 +20,3 @@ export default function SyncButton({ syncing, onPress }: SyncButtonProps) {
     </Pressable>
   );
 }
-

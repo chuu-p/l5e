@@ -7,9 +7,7 @@ export default function SleepComponent() {
         <Text className="text-neon text-2xl font-black tracking-tighter">
           SYSTEM ACTIVE
         </Text>
-        <Text className="text-zinc-500 mt-2">
-          Syncing sleep data...
-        </Text>
+        <Text className="text-zinc-500 mt-2">Syncing sleep data...</Text>
       </View>
     </View>
   );
