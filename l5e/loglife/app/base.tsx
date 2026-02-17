@@ -1,7 +1,7 @@
 import pb from "./pb";
-import { Text, View, Button } from "react-native";
+import { View, Button } from "react-native";
 import { useState } from "react";
-
+import Typography from "./components/atoms/Typography"
 
 export default function BaseExample() {
   const [data, setData] = useState("Loading...");
@@ -22,7 +22,7 @@ export default function BaseExample() {
 
   return (
     <View>
-      <Text style={{ color: "white" }}>{data}</Text>
+      <Typography text={data} />
       <Button title="Load pb data" onPress={handlePress} />
     </View>
   );
