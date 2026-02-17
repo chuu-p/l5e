@@ -1,28 +1,34 @@
-import { Text, View } from "react-native";
+import { Icon, Text, View } from "react-native";
 import SampleExample from "./sample";
 import BaseExample from "./base";
 import SleepComponent from "./SleepComponent";
+import ListTile from "./templates/ListTile";
+import IconStack from "./components/molecules/IconStack";
 import "./global.css"
+
+export function Icon(props: React.ComponentProps<typeof Ionicons>) {
+  return <Ionicons {...props} />;
+}
 
 export default function Index() {
   return (
     <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "black",
-      }}
+      className="flex flex-1 justify-center items-center bg-black text-white"
     >
-      <Text className="text-xl font-bold text-blue-500">
-        Welcome to Nativewind!
-      </Text>
-      <Text style={{ color: "white" }}>
-        Edit app/index.tsx to edit this screen.
-      </Text>
-      <SampleExample />
-      <BaseExample />
-      <SleepComponent />
+<ListTile
+  leading={
+    <IconStack
+      back={<Icon name="circle" />}
+      front={<Icon name="check" />}
+    />
+  }
+  title={<Text>Title</Text>}
+  subtitle={<Text>Subtitle</Text>}
+  trailing={
+    <IconButton icon={<Icon name="chevron-right" />} />
+  }
+  onPress={() => {}}
+/>
     </View>
   );
 }
