@@ -10,6 +10,7 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { useTailwind } from 'nativewind';
 import { initialize, requestPermission, readRecords } from 'react-native-health-connect';
 import { useState } from 'react';
+import pb from '@/lib/pb';
 
 const readSampleData = async () => {
   // initialize the client
@@ -34,11 +35,23 @@ const readSampleData = async () => {
 
 export function Dashboard() {
   const [data, setData] = useState('inirial');
+  const [pbData, setPbData] = useState('inirial pb');
 
   const handleClick = async () => {
     console.log('onClick');
     const _data = await readSampleData();
     setData(JSON.stringify(_data));
+  };
+
+  const handlePbClick = async () => {
+    await pb
+      .collection('users') // or your auth collection
+      .authWithPassword('chuu801@pm.me', 'artemis1');
+
+    // 2️⃣ Fetch data
+    const result = await pb.collection('entries').getList(); // page, perPage
+
+    setPbData(JSON.stringify(result));
   };
 
   return (
@@ -71,7 +84,11 @@ export function Dashboard() {
           }
         />
       </ListTileList>
+      <Button onPress={handlePbClick}>
+        <Text>sync</Text>
+      </Button>
       <Text>{data}</Text>
+      <Text>{pbData}</Text>
     </View>
   );
 }
