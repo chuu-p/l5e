@@ -35,7 +35,14 @@ const generateSleepStages = (bedtime: Date, wakeUp: Date) => {
   ];
 };
 
-const writeSampleSleepData = async () => {
+function extractEventMeta(record: any) {
+  return {
+    data_type: 'sleep', // or record.recordType if you have multiple HC types
+    data_source: record?.metadata?.dataOrigin ?? 'unknown',
+  };
+}
+
+const generateSampleSleepData = async () => {
   try {
     const isInitialized = await initialize();
     if (!isInitialized) {
@@ -97,9 +104,7 @@ const writeSampleSleepData = async () => {
       records.push(sleepSession);
     }
 
-    const ids = await insertRecords(records);
-    console.log('Records inserted ', { ids });
-    return ids;
+    return records;
   } catch (error) {
     console.error('Error writing sleep data: ', error);
   }
@@ -115,11 +120,11 @@ const readSleepSampleData = async () => {
   ]);
 
   // check if granted
-  const { records } = await readRecords('ActiveCaloriesBurned', {
+  const { records } = await readRecords('SleepSession', {
     timeRangeFilter: {
       operator: 'between',
-      startTime: '2023-01-09T12:00:00.405Z',
-      endTime: '2023-01-09T23:53:15.405Z',
+      startTime: '2026-01-01T00:00:00.000Z',
+      endTime: '2026-02-20T00:00:00.000Z',
     },
   });
 
@@ -154,13 +159,41 @@ export function Dashboard() {
 
   const handleClick = async () => {
     console.log('onClick');
-    const _data = await readSampleData();
-    setData(JSON.stringify(_data));
+    const _data = await readSleepSampleData();
+    const data_str = JSON.stringify(_data);
+    console.log(JSON.stringify(_data[0]));
+    setData(data_str);
   };
 
   const handleInsertClick = async () => {
-    const data = await writeSampleSleepData();
-    setWriteData(data);
+    const records = await generateSampleSleepData();
+    const ids = await insertRecords(records);
+    console.log('Records inserted ', { ids });
+
+    setWriteData(ids);
+  };
+
+  const handleInsertDbClick = async () => {
+    console.log('Generate / fetch Health Connect records');
+    const records = await generateSampleSleepData();
+
+    console.log('Authenticate');
+    const auth = await pb.collection('users').authWithPassword('chuu801@pm.me', 'artemis1');
+
+    const userId = auth.record.id;
+
+    console.log('Insert records as events');
+    for (const record of records) {
+      console.log('insert one');
+      const { data_type, data_source } = extractEventMeta(record);
+
+      await pb.collection('events').create({
+        user_id: userId,
+        data_type,
+        data_source,
+        payload: record, // full Health Connect record
+      });
+    }
   };
 
   const handlePbClick = async () => {
@@ -212,6 +245,9 @@ export function Dashboard() {
       </Button>
       <Button onPress={handleInsertClick}>
         <Text>insert test data</Text>
+      </Button>
+      <Button onPress={handleInsertDbClick}>
+        <Text>insert test data to db</Text>
       </Button>
       <Text>{data}</Text>
       <Text>{pbData}</Text>
