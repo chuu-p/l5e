@@ -135,8 +135,50 @@ const readSampleData = async () => {
   // initialize the client
   const isInitialized = await initialize();
 
+  const permissions = [
+    "ActiveCaloriesBurned",
+"BasalBodyTemperature",
+"BasalMetabolicRate",
+"BloodGlucose",
+"BloodPressure",
+"BodyFat",
+"BodyTemperature",
+"BoneMass",
+"CervicalMucus",
+"CyclingPedalingCadence",
+"Distance",
+"ElevationGained",
+"ExerciseSession",
+"FloorsClimbed",
+"HeartRate",
+"Height",
+"Hydration",
+"LeanBodyMass",
+"MenstruationFlow",
+"MenstruationPeriod",
+"Nutrition",
+"OvulationTest",
+"OxygenSaturation",
+"Power",
+"RespiratoryRate",
+"RestingHeartRate",
+"SexualActivity",
+"SleepSession",
+"Speed",
+"StepsCadence",
+"Steps",
+"TotalCaloriesBurned",
+"Vo2Max",
+"Weight",
+"WheelchairPushes"
+  ];
+
   // request permissions
   const grantedPermissions = await requestPermission([
+    {
+      accessType: 'read',
+      recordType: 'BackgroundAccessPermission',
+    },
     { accessType: 'read', recordType: 'ActiveCaloriesBurned' },
   ]);
 
